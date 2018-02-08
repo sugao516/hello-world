@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="test.xsl"?><html xml:lang="jp" lang="jp" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>XSLTメモ (002)</title>
+</head>
+<body>
+<h1>XSLTでXMLの属性の値を変更する</h1>
+<p style="color:blue;">style属性のcolorプロパティを変更する</p>
+</body>
+</html>
