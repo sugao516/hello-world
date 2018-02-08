@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>test</title>
+		<script src="test.js"></script>
+		<style type="text/css">
+<!--
+table,tr,th,td { border: solid thin; }
+-->
+		</style>
+	</head>
+	<body>
+		<form name="f1">
+			<label for="id_number">会員番号：</label>
+			<input type="text" name="number" id="id_number" value="102">
+			<input type="button" onclick="xslFunc('test.xsl', 'test_in.xml', {'p.number': f1.number.value}, document.all.test_out)" value="実行">
+		</form>
+		<div id="test_out"></div>
+	</body>
+</html>
