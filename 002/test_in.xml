@@ -6,7 +6,17 @@
 <title>XSLTメモ (002)</title>
 </head>
 <body>
+<div id="a_modify">
 <h1>XSLTでXMLの属性の値を変更する</h1>
 <p style="color:red;">style属性のcolorプロパティを変更する</p>
+</div>
+<div id="a_delete">
+<h1>XSLTでXMLの属性を削除する</h1>
+<p style="color:red;">style属性を削除する</p>
+</div>
+<div id="a_add">
+<h1>XSLTでXMLの属性を追加する</h1>
+<p>style属性を追加する</p>
+</div>
 </body>
 </html>
