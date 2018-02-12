@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="test.xsl"?><html xml:lang="jp" lang="jp" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<title>XSLTメモ (002)</title>
+<style type="text/css"><![CDATA[
+table,tr,th,td { border: solid thin; }
+]]></style></head>
+<body><h1>表に変換</h1><table><tr><th>章番号</th><th>見出し</th><th>本文</th></tr><tr><td>1</td><td>XSLTでXMLの属性の値を変更する</td><td>style属性のcolorプロパティを変更する</td></tr><tr><td>2</td><td>XSLTでXMLの属性を削除する</td><td>style属性を削除する</td></tr><tr><td>3</td><td>XSLTでXMLの属性を追加する</td><td>style属性を追加する</td></tr></table></body>
+</html>
