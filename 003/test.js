@@ -5,7 +5,7 @@ function xslFunc(xslSource, xmlSource, params, elem) {
 		var xslDoc = dom.load(xslSource, true );
 		var xmlDoc = dom.load(xmlSource, false);
 
-		var xslProc = new XSLTProcessor();
+		var xslProc = new dom.XSLTProcessor();
 		xslProc.importStylesheet(xslDoc);
 		for (var key in params) {
 			xslProc.setParameter(null, key, params[key]);
@@ -24,9 +24,10 @@ function DOMDocument() {
 	var isIE = !window.XSLTProcessor;
 	if(!isIE) {
 		this.load = load;
+		this.XSLTProcessor = window.XSLTProcessor;
 	} else {
 		this.load = loadIE;
-		window.XSLTProcessor = XSLTProcessorIE;
+		this.XSLTProcessor = XSLTProcessorIE;
 	}
 
 	function load(url, isXsl) {
@@ -71,8 +72,9 @@ function XSLTProcessorIE() {
 	this.transformToFragment = function(source, owner) {
 		this.xslProc.input = source;
 		this.xslProc.transform();
-		var elem = owner.createElement(null);
+		var namespaceURI = owner.documentElement.namespaceURI;
+		var elem = owner.createElementNS(namespaceURI, null);
 		elem.innerHTML = this.xslProc.output;
-		return elem;
+		return elem.firstElementChild;
 	}
 }

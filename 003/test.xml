@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<html xml:lang="jp" lang="jp" xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>test(xhtml)</title>
+		<script src="test.js"></script>
+		<style type="text/css">
+<![CDATA[
+table,tr,th,td { border: solid thin; }
+]]>
+		</style>
+	</head>
+	<body>
+		<form name="f1">
+			<label for="id_number">会員番号：</label>
+			<input type="text" name="number" id="id_number" value="102" />
+			<input type="button" onclick="xslFunc('test.xsl', 'test_in.xml', {'p.number': document.getElementById('id_number').value}, document.getElementById('test_out'))" value="実行" />
+		</form>
+		<div id="test_out"></div>
+	</body>
+</html>
