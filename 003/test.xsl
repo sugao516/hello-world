@@ -1,12 +1,24 @@
-<?xml version="1.0" encoding="utf-8" ?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<?xml version="1.0" encoding="utf-8"?>
+<xsl:stylesheet version="1.0"
+  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  xmlns:x="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.w3.org/1999/xhtml"
+  exclude-result-prefixes="x"
+  >
 
-  <xsl:output method="html" encoding="utf-8"/>
+  <xsl:output method="xml" encoding="utf-8" omit-xml-declaration="yes" cdata-section-elements="style" indent="yes" />
   
   <xsl:param name="p.number"/>
 
   <xsl:template match="/">
+    <div>
+<style type="text/css">
+<![CDATA[
+table,tr,th,td { border: solid thin; }
+]]>
+</style>
     <xsl:apply-templates/>
+    </div>
   </xsl:template> 
 
   <xsl:template match="会員名簿">
@@ -44,3 +56,6 @@
   </xsl:template> 
 
 </xsl:stylesheet>
+<!--
+../msxsl test_in.xml test.xsl -o test_out.xml
+-->

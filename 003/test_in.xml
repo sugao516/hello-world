@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="test.xsl"?>
 <会員名簿>
 	<会員 会員番号="101">
 		<姓>佐藤</姓>

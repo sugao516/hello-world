@@ -15,7 +15,7 @@ function xslFunc(xslSource, xmlSource, params, elem) {
 		elem.innerHTML = "";
 		elem.appendChild(node);
 	} catch(e) {
-		elem.innerHTML = e.description;
+		elem.innerHTML = e.message;
 	}
 }
 

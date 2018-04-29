@@ -12,10 +12,14 @@ table,tr,th,td { border: solid thin; }
 	</head>
 	<body>
 		<form name="f1">
-			<label for="id_number">会員番号：</label>
-			<input type="text" name="number" id="id_number" value="102" />
-			<input type="button" onclick="xslFunc('test.xsl', 'test_in.xml', {'p.number': document.getElementById('id_number').value}, document.getElementById('test_out'))" value="実行" />
+			<label for="id_xml">xml:</label>
+			<input type="text" name="number" id="id_xml" value="test_in.xml" />
+			<label for="id_xsl">xsl:</label>
+			<input type="text" name="number" id="id_xsl" value="test.xsl" />
+			<label for="id_arg">arg:</label>
+			<input type="text" name="number" id="id_arg" value="102" />
+			<input type="button" onclick="xslFunc(document.getElementById('id_xsl').value, document.getElementById('id_xml').value, {'p.number': document.getElementById('id_arg').value}, document.getElementById('id_out'))" value="実行" />
 		</form>
-		<div id="test_out"></div>
+		<div id="id_out"></div>
 	</body>
 </html>

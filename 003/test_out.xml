@@ -1,0 +1,31 @@
+<div xmlns="http://www.w3.org/1999/xhtml">
+<style type="text/css"><![CDATA[
+table,tr,th,td { border: solid thin; }
+]]></style>
+<table>
+<tr>
+<th>会員番号</th><th>氏名</th><th>性別</th><th>年齢</th><th>職業</th>
+</tr>
+	<tr style="background-color: ;">
+<td>101</td>
+<td>佐藤 一郎</td>
+<td>男</td>
+<td>30</td>
+<td>自営業</td>
+</tr>
+	<tr style="background-color: ;">
+<td>102</td>
+<td>山田 次郎</td>
+<td>男</td>
+<td>28</td>
+<td>公務員</td>
+</tr>
+	<tr style="background-color: ;">
+<td>103</td>
+<td>鈴木 花子</td>
+<td>女</td>
+<td>26</td>
+<td>会社員</td>
+</tr>
+</table>
+</div>
