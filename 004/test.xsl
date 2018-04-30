@@ -6,7 +6,7 @@
   exclude-result-prefixes="x"
   >
 
-  <xsl:output method="xml" encoding="utf-8" cdata-section-elements="style" />
+  <xsl:output method="xml" encoding="utf-8" cdata-section-elements="style" indent="yes" />
 
   <!-- 要素・属性をコピー -->
   <xsl:template match="/|node()|@*">
@@ -53,5 +53,5 @@ table,tr,th,td { border: solid thin; }
 
 </xsl:stylesheet>
 <!--
-./msxsl 004/test_in.xml 004/test.xsl -o 004/test_out.xml
+../msxsl test_in.xml test.xsl -o test_out.xml
 -->
