@@ -2,11 +2,15 @@
 <?xml-stylesheet type="text/xsl" href="test.xsl"?>
 <html xml:lang="jp" lang="jp" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></meta>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>XSLTメモ (001)</title>
 </head>
 <body>
 <h1>XSLTでXMLの要素・属性をコピーする</h1>
 <p style="color:red;">XSLTでXMLの要素・属性をコピーする</p>
+<p>XSLTでXMLの<br/>
+<b>空要素タグ</b>
+<br/>をコピーする</p>
+<hr/>
 </body>
 </html>

@@ -6,11 +6,13 @@
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
+  <!-- 要素・属性をコピー（空要素タグが展開されない） -->
+  <xsl:template match="x:hr|x:br">
+    <xsl:copy-of select="."/>
+  </xsl:template>
+
   <!-- 要素・属性をコピー -->
   <xsl:template match="/|node()|@*">
-<!--
-    <xsl:copy-of select="."/>
--->
     <xsl:copy>
       <xsl:apply-templates select="node()|@*" />
     </xsl:copy>
