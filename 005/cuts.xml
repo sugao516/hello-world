@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="to_list.xsl"?>
+<!-- XSLTプロセッサで変換した場合、この行↑は削除する -->
+<html xml:lang="jp" lang="jp" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>単票形式</title>
+<meta charset="utf-8" />
+</head>
+<body>
+<table border="1">
+<tr><th>商品番号</th><td>101</td></tr>
+<tr><th>商品名</th><td>タマネギ</td></tr>
+<tr><th>単価</th><td>60</td></tr>
+<tr><th>在庫</th><td>250</td></tr>
+<tr><th>備考</th><td>
+ユリ科ネギ属<br/>
+パタリロ
+</td></tr>
+</table>
+<hr/>
+<table border="1">
+<tr><th>商品番号</th><td>102</td></tr>
+<tr><th>商品名</th><td>ニンジン</td></tr>
+<tr><th>単価</th><td>90</td></tr>
+<tr><th>在庫</th><td>100</td></tr>
+<tr><th>備考</th><td>セリ科ニンジン属</td></tr>
+</table>
+<hr/>
+<table border="1">
+<tr><th>商品番号</th><td>103</td></tr>
+<tr><th>商品名</th><td>ジャガイモ</td></tr>
+<tr><th>単価</th><td>80</td></tr>
+<tr><th>在庫</th><td>150</td></tr>
+<tr><th>備考</th><td>
+ナス科ナス属<br/>
+ポテトチップス<br/>
+肉じゃが
+</td></tr>
+</table>
+</body>
+</html>
