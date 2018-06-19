@@ -19,7 +19,9 @@
       <table border="1">
         <!-- 見出し行 -->
         <tr>
-          <xsl:apply-templates select="//x:table[1]/x:tr/x:th" />
+          <xsl:apply-templates select="//x:table[1]//x:tr" >
+            <xsl:with-param name="p.th" select="true()"/>
+          </xsl:apply-templates>
         </tr>
         <!-- データ行 -->
         <xsl:apply-templates select="node()|@*" />
@@ -30,8 +32,29 @@
   <xsl:template match="x:table">
     <!-- データ行 -->
     <tr>
-      <xsl:apply-templates select=".//x:tr/x:td" />
+      <!-- tbodyがある場合を考慮して、"//"としておく -->
+      <xsl:apply-templates select=".//x:tr" />
     </tr>
+  </xsl:template>
+
+  <xsl:template match="x:tr">
+    <xsl:param name="p.th"/>
+    <xsl:choose>
+      <xsl:when test="false()"></xsl:when>
+<!-- 指定項目を表示したくない場合、有効にする。この場合は、5列目（備考）が表示されなくなる
+      <xsl:when test="position()= 5"></xsl:when>
+-->
+      <xsl:otherwise>
+        <xsl:choose>
+          <xsl:when test="$p.th">
+            <xsl:apply-templates select="x:th" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:apply-templates select="x:td" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <!-- hr タグは破棄する -->

@@ -31,12 +31,20 @@
 
   <xsl:template match="x:td">
     <xsl:variable name="v.pos" select="position()" />
-    <tr>
-      <xsl:apply-templates select="//x:th[$v.pos]" />
-      <xsl:copy>
-        <xsl:apply-templates select="node()|@*" />
-      </xsl:copy>
-    </tr>
+    <xsl:choose>
+      <xsl:when test="false()"></xsl:when>
+<!-- 指定項目を表示したくない場合、有効にする。この場合は、5行目（備考）が表示されなくなる
+      <xsl:when test="$v.pos= 5"></xsl:when>
+-->
+      <xsl:otherwise>
+        <tr>
+          <xsl:apply-templates select="//x:th[$v.pos]" />
+          <xsl:copy>
+            <xsl:apply-templates select="node()|@*" />
+          </xsl:copy>
+        </tr>
+      </xsl:otherwise>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="x:meta|x:br">
