@@ -8,6 +8,10 @@
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
+  <xsl:template match="//processing-instruction()">
+    <xsl:processing-instruction name="xml-stylesheet">type="text/xsl" href="to_list.xsl"</xsl:processing-instruction>
+  </xsl:template>
+
   <xsl:template match="x:title">
     <xsl:copy>
       <xsl:text>単票形式</xsl:text>
