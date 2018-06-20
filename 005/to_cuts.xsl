@@ -19,15 +19,15 @@
   </xsl:template>
 
   <xsl:template match="x:table">
-    <xsl:apply-templates select="node()|@*" />
+    <xsl:apply-templates select=".//x:tr" />
   </xsl:template>
 
   <xsl:template match="x:tr">
-    <xsl:if test="x:td">
+    <xsl:if test="position()!=1">
       <table border="1">
         <xsl:apply-templates select="x:td" />
       </table>
-      <xsl:if test=".!=//x:tr[count(//x:tr)]">
+      <xsl:if test="position()!=last()">
         <hr/>
       </xsl:if>
     </xsl:if>
