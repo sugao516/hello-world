@@ -23,9 +23,7 @@
       <table border="1">
         <!-- 見出し行 -->
         <tr>
-          <xsl:apply-templates select="//x:table[1]//x:tr" >
-            <xsl:with-param name="p.th" select="true()"/>
-          </xsl:apply-templates>
+          <xsl:apply-templates select="//x:table[1]//x:tr" mode="t.th" />
         </tr>
         <!-- データ行 -->
         <xsl:apply-templates select="node()|@*" />
@@ -37,26 +35,31 @@
     <!-- データ行 -->
     <tr>
       <!-- tbodyがある場合を考慮して、"//"としておく -->
-      <xsl:apply-templates select=".//x:tr" />
+      <xsl:apply-templates select=".//x:tr" mode="t.td" />
     </tr>
   </xsl:template>
 
-  <xsl:template match="x:tr">
-    <xsl:param name="p.th"/>
+  <xsl:template match="x:tr" mode="t.th">
+    <xsl:call-template name="t.tr" >
+      <xsl:with-param name="p.tx" select="x:th"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="x:tr" mode="t.td">
+    <xsl:call-template name="t.tr" >
+      <xsl:with-param name="p.tx" select="x:td"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template name="t.tr">
+    <xsl:param name="p.tx"/>
     <xsl:choose>
       <xsl:when test="false()"></xsl:when>
 <!-- 指定項目を表示したくない場合、有効にする。この場合は、5列目（備考）が表示されなくなる
       <xsl:when test="position()= 5"></xsl:when>
 -->
       <xsl:otherwise>
-        <xsl:choose>
-          <xsl:when test="$p.th">
-            <xsl:apply-templates select="x:th" />
-          </xsl:when>
-          <xsl:otherwise>
-            <xsl:apply-templates select="x:td" />
-          </xsl:otherwise>
-        </xsl:choose>
+        <xsl:apply-templates select="$p.tx" />
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
