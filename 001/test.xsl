@@ -6,12 +6,18 @@
 
   <xsl:output method="xml" encoding="utf-8" indent="yes" />
 
-  <!-- 要素・属性をコピー（空要素タグが展開されない） -->
-  <xsl:template match="x:hr|x:br">
+  <!-- (A)要素・属性をコピー
+  1.空要素タグは、開始タグ・終了タグに展開されない 
+  2.開始タグ・終了タグは、空要素タグにはならない 
+  -->
+  <xsl:template match="x:hr|x:br|x:p">
     <xsl:copy-of select="."/>
   </xsl:template>
 
-  <!-- 要素・属性をコピー -->
+  <!-- (B)要素・属性をコピー
+  1.空要素タグは、開始タグ・終了タグに展開される 
+  2.開始タグ・終了タグは、空要素タグにはならない 
+  -->
   <xsl:template match="/|node()|@*">
     <xsl:copy>
       <xsl:apply-templates select="node()|@*" />

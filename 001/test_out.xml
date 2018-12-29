@@ -2,8 +2,12 @@
 <?xml-stylesheet type="text/xsl" href="test.xsl"?>
 <html xml:lang="jp" lang="jp" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+<!-- (B)1.空要素タグは、開始タグ・終了タグに展開される(meta) -->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </meta>
+<!-- (B)2.開始タグ・終了タグは、空要素タグにはならない(script) -->
+<script>
+</script>
 <title>XSLTメモ (001)</title>
 </head>
 <body>
@@ -12,6 +16,9 @@
 <p>XSLTでXMLの<br />
 <b>空要素タグ</b>
 <br />をコピーする</p>
+<!-- (A)2.開始タグ・終了タグは、空要素タグにはならない(p) -->
+<p></p>
+<!-- (A)1.空要素タグは、開始タグ・終了タグに展開されない(hr) -->
 <hr />
 </body>
 </html>
