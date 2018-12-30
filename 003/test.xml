@@ -13,11 +13,11 @@ table,tr,th,td { border: solid thin; }
 	<body>
 		<form name="f1">
 			<label for="id_xml">xml:</label>
-			<input type="text" name="number" id="id_xml" value="test_in.xml" />
+			<input type="text" name="nm_xml" id="id_xml" value="test_in.xml" />
 			<label for="id_xsl">xsl:</label>
-			<input type="text" name="number" id="id_xsl" value="test.xsl" />
+			<input type="text" name="nm_xsl" id="id_xsl" value="test.xsl" />
 			<label for="id_arg">arg:</label>
-			<input type="text" name="number" id="id_arg" value="102" />
+			<input type="text" name="nm_arg" id="id_arg" value="102" />
 			<input type="button" onclick="xslFunc(document.getElementById('id_xsl').value, document.getElementById('id_xml').value, {'p.number': document.getElementById('id_arg').value}, document.getElementById('id_out'))" value="実行" />
 		</form>
 		<div id="id_out"></div>
