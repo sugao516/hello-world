@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>test</title>
+	<script src="test.js"></script>
+	<style type="text/css">
+<!--
+table,tr,th,td { border: solid thin; }
+-->
+	</style>
+</head>
+<body onload="test(tarea_a, tarea_b)">
+	<form name="f1">
+		<label for="club_name">club_name:</label>
+		<input type="text" id="club_name" name="club_name" value="Foo Bar">
+		<fieldset style="width: 50%;">
+			<label for="club.tel">club.tel:</label>
+			<input type="text" id="club.tel" name="club.tel" value="0120-345-678">
+			<label for="club.post">club.post:</label>
+			<input type="text" id="club.post" name="club.post" value="123-4567">
+		</fieldset>
+		<table>
+			<tr>
+				<th>会員番号</th>
+				<th>氏名</th>
+				<th>性別</th>
+				<th>年齢</th>
+				<th>職業</th>
+			</tr>
+			<tr>
+				<td>
+					<input type="number" id="m_id0" name="m_id[0]" value="101">
+				</td>
+				<td>佐藤 一郎</td>
+				<td>
+					<input type="radio" id="member0.sex.m" name="member[0].sex" value="1">男
+					<input type="radio" id="member0.sex.f" name="member[0].sex" value="2" checked="true">女
+				</td>
+				<td>
+					<input type="number" id="member0.age" name="member[0].age" value="30">
+				</td>
+				<td>自営業</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="number" id="m_id1" name="m_id[1]" value="102">
+				</td>
+				<td>山田 次郎</td>
+				<td>
+					<input type="radio" id="member1.sex.m" name="member[1].sex" value="1" checked="true">男
+					<input type="radio" id="member1.sex.f" name="member[1].sex" value="2">女
+				</td>
+				<td>
+					<input type="number" id="member0.age" name="member[1].age" value="28">
+				</td>
+				<td>公務員</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="number" id="m_id2" name="m_id[2]" value="103">
+				</td>
+				<td>鈴木 花子</td>
+				<td>
+					<input type="radio" id="member2.sex.m" name="member[2].sex" value="1">男
+					<input type="radio" id="member2.sex.f" name="member[2].sex" value="2" checked="true">女
+				</td>
+				<td>
+					<input type="number" id="member0.age" name="member[2].age" value="26">
+				</td>
+				<td>会社員</td>
+			</tr>
+		</table>
+		<input type="submit">
+	</form>
+	<p style="display:inline-block">
+		<label for="tarea_a">変換前（'&amp;'で改行）：</label><br>
+		<textarea id="tarea_a" name="tarea_a" cols="30" rows="15"></textarea>
+	</p>
+	<p style="display:inline-block">
+		<label for="tarea_b">変換後（JSON）：</label><br>
+		<textarea id="tarea_b" name="tarea_b" cols="30" rows="15"></textarea>
+	</p>
+</body>
+</html>
