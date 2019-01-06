@@ -8,39 +8,72 @@ function getParams(search) {
 	var json = {};
 	search = decodeURIComponent(search);
 	var a = search.split(/[?&]/);
-	a.forEach(function(e,i){
-		if(e.length<=0) {
+	a.forEach(function (e, i) {
+		if (e.length <= 0) {
 			return;
 		}
 		var ka = e.split('=');
 		var kb = ka[0].split('.');
 		var kc = kb[0].split(/[\[\]]/);
-		var x = {f:json, g:kc[0]};
+		var x = { f: json, g: kc[0] };
 		parseParam(x, kc[1], []);
 		parseParam(x, kb[1], {});
 		x.f[x.g] = ka[1];
 	})
-    return json;
+	return json;
 }
 function parseParam(x, p, n) {
 	if (p !== void 0) {
-		if(x.f[x.g] === void 0){
+		if (x.f[x.g] === void 0) {
 			x.f[x.g] = n;
 		}
 		x.f = x.f[x.g];
 		x.g = p;
 	}
 }
+function traverseJSON(json, keys, callback) {
+	if (typeof json !== "object") {
+		callback(keys, json);
+		return;
+	}
+	var b = Array.isArray(json);
+	for (var k in json) {
+		var x = keys.concat();
+		if (b) {
+			x[x.length - 1] += '[' + k + ']';
+		} else {
+			x.push(k);
+		}
+		traverseJSON(json[k], x, callback);
+	}
+}
+$(document).ready(function () {
+	var json;
+	if (location.search.length > 0) {
+		var search = decodeURIComponent(location.search);
+		tarea_a.value = search.replace(/&/g, "\n&");
+		json = getParams(location.search);
+	} else {
+		var response = $.ajax({ url: 'test.json', dataType: 'json', async: false });
+		json = JSON.parse(response.responseText);
+	}
+	traverseJSON(json, [], function (keys, value) {
+		var name = keys.join('.');
+		$("[name='" + name + "']").val([value]);
+		console.log(name + ":" + value);
+	});
+	tarea_b.value = JSON.stringify(json, null, '  ');
+	test();
+});
 
-function test(a, b) {
-	var search = decodeURIComponent(location.search);
-	a.value = search.replace(/&/g, "\n&");
-	var json = getParams(location.search);
-	b.value = JSON.stringify(json, null, '  ');
+function test() {
 	{
 		var j = {};
 		j["club_name"] = "Foo+Bar";
 		j["club"] = {};
+		j["club"]["sports"] = "2";
+		j["club"]["area-2"] = "on";
+		j["club"]["area-4"] = "on";
 		j["club"]["tel"] = "0120-345-678";
 		j["club"]["post"] = "123-4567";
 		j["m_id"] = [];
@@ -62,12 +95,18 @@ function test(a, b) {
 	{
 		var j = {
 			"club_name": "Foo+Bar",
-			"club": {  "tel": "0120-345-678",  "post": "123-4567"	},
-			"m_id": [ "101", "102", "103"	],
+			"club": {
+				"sports": "2",
+				"area-2": "on",
+				"area-4": "on",
+				"tel": "0120-345-678",
+				"post": "123-4567"
+			},
+			"m_id": ["101", "102", "103"],
 			"member": [
-			  {	"sex": "2",	"age": "30"	},
-			  {	"sex": "1",	"age": "28" },
-			  {	"sex": "2",	"age": "26" }
+				{ "sex": "2", "age": "30" },
+				{ "sex": "1", "age": "28" },
+				{ "sex": "2", "age": "26" }
 			]
 		};
 		console.log(j);

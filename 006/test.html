@@ -1,24 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>test</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<script src="test.js"></script>
 	<style type="text/css">
-<!--
 table,tr,th,td { border: solid thin; }
--->
 	</style>
 </head>
-<body onload="test(tarea_a, tarea_b)">
+<body>
 	<form name="f1">
 		<label for="club_name">club_name:</label>
-		<input type="text" id="club_name" name="club_name" value="Foo Bar">
+		<input type="text" id="club_name" name="club_name">
 		<fieldset style="width: 50%;">
+			<label for="club.sports">club.sports:</label>
+			<select id="club.sports" name="club.sports">
+				<option value=""></option>
+				<option value="1">野球</option>
+				<option value="2">サッカー</option>
+				<option value="3">テニス</option>
+			</select>
+			<fieldset style="width: 50%;">
+				<legend>club.area</legend>
+				<input type="checkbox" id="club.area-1" name="club.area-1">北海道
+				<input type="checkbox" id="club.area-2" name="club.area-2">本州
+				<input type="checkbox" id="club.area-3" name="club.area-3">四国
+				<input type="checkbox" id="club.area-4" name="club.area-4">九州
+			</fieldset>
 			<label for="club.tel">club.tel:</label>
-			<input type="text" id="club.tel" name="club.tel" value="0120-345-678">
+			<input type="text" id="club.tel" name="club.tel">
 			<label for="club.post">club.post:</label>
-			<input type="text" id="club.post" name="club.post" value="123-4567">
+			<input type="text" id="club.post" name="club.post">
 		</fieldset>
 		<table>
 			<tr>
@@ -30,51 +44,52 @@ table,tr,th,td { border: solid thin; }
 			</tr>
 			<tr>
 				<td>
-					<input type="number" id="m_id0" name="m_id[0]" value="101">
+					<input type="number" id="m_id0" name="m_id[0]">
 				</td>
 				<td>佐藤 一郎</td>
 				<td>
 					<input type="radio" id="member0.sex.m" name="member[0].sex" value="1">男
-					<input type="radio" id="member0.sex.f" name="member[0].sex" value="2" checked="true">女
+					<input type="radio" id="member0.sex.f" name="member[0].sex" value="2">女
 				</td>
 				<td>
-					<input type="number" id="member0.age" name="member[0].age" value="30">
+					<input type="number" id="member0.age" name="member[0].age">
 				</td>
 				<td>自営業</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="number" id="m_id1" name="m_id[1]" value="102">
+					<input type="number" id="m_id1" name="m_id[1]">
 				</td>
 				<td>山田 次郎</td>
 				<td>
-					<input type="radio" id="member1.sex.m" name="member[1].sex" value="1" checked="true">男
+					<input type="radio" id="member1.sex.m" name="member[1].sex" value="1">男
 					<input type="radio" id="member1.sex.f" name="member[1].sex" value="2">女
 				</td>
 				<td>
-					<input type="number" id="member0.age" name="member[1].age" value="28">
+					<input type="number" id="member0.age" name="member[1].age">
 				</td>
 				<td>公務員</td>
 			</tr>
 			<tr>
 				<td>
-					<input type="number" id="m_id2" name="m_id[2]" value="103">
+					<input type="number" id="m_id2" name="m_id[2]">
 				</td>
 				<td>鈴木 花子</td>
 				<td>
 					<input type="radio" id="member2.sex.m" name="member[2].sex" value="1">男
-					<input type="radio" id="member2.sex.f" name="member[2].sex" value="2" checked="true">女
+					<input type="radio" id="member2.sex.f" name="member[2].sex" value="2">女
 				</td>
 				<td>
-					<input type="number" id="member0.age" name="member[2].age" value="26">
+					<input type="number" id="member0.age" name="member[2].age">
 				</td>
 				<td>会社員</td>
 			</tr>
 		</table>
+		<input type="reset">
 		<input type="submit">
 	</form>
 	<p style="display:inline-block">
-		<label for="tarea_a">変換前（'&amp;'で改行）：</label><br>
+		<label for="tarea_a">URL パラメータ（'&amp;'毎に改行）：</label><br>
 		<textarea id="tarea_a" name="tarea_a" cols="30" rows="15"></textarea>
 	</p>
 	<p style="display:inline-block">

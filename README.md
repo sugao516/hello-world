@@ -5,3 +5,4 @@
 003 XSLTをjavascriptで実行する
 004 XSLTで表に変換
 005 XSLTで単票形式と一覧形式を相互に変換
+006 JSONでformを初期化, および, URLパラメタをJSONに変換
