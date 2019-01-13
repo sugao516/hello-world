@@ -1,26 +1,17 @@
 /**
- * Get the URL parameter value
+ * build JSON object
  *
- * @param  search {string} パラメータのキー文字列
- * @return  json {json} 
+ * @param  s {string} "key=value"
+ * @param  this {json} JSON object
  */
-function getParams(search) {
-	var json = {};
-	search = decodeURIComponent(search);
-	var a = search.split(/[?&]/);
-	a.forEach(function (e, i) {
-		if (e.length <= 0) {
-			return;
-		}
-		var ka = e.split('=');
-		var kb = ka[0].split('.');
-		var kc = kb[0].split(/[\[\]]/);
-		var x = { f: json, g: kc[0] };
-		parseParam(x, kc[1], []);
-		parseParam(x, kb[1], {});
-		x.f[x.g] = ka[1];
-	})
-	return json;
+function buildJSON(s) {
+	var ka = s.split(/\s*=\s*/);
+	var kb = ka[0].split('.');
+	var kc = kb[0].split(/[\[\]]/);
+	var x = { f: this, g: kc[0] };
+	parseParam(x, kc[1], []);
+	parseParam(x, kb[1], {});
+	x.f[x.g] = ka[1];
 }
 function parseParam(x, p, n) {
 	if (p !== void 0) {
@@ -31,9 +22,19 @@ function parseParam(x, p, n) {
 		x.g = p;
 	}
 }
+
+/**
+ * traverse JSON object
+ *
+ * @param  json {json} JSON object
+ * @param  keys {array} key array
+ * @param  callback {function}
+ */
 function traverseJSON(json, keys, callback) {
 	if (typeof json !== "object") {
-		callback(keys, json);
+		if (typeof json !== "function") {
+			callback(keys, json);
+		}
 		return;
 	}
 	var b = Array.isArray(json);
@@ -47,12 +48,29 @@ function traverseJSON(json, keys, callback) {
 		traverseJSON(json[k], x, callback);
 	}
 }
+
+/**
+ * URL parameters to JSON object
+ *
+ * @param  search {string} URLパラメータ
+ * @return json {json}
+ */
+function paramsToJSON(search) {
+	var json = {};
+	decodeURIComponent(search)
+		.split(/[?&]/)
+		.slice(1)	/** 先頭要素を除外 */
+		.forEach(buildJSON, json)
+	return json;
+}
+
 $(document).ready(function () {
+	document.title = "test: " + $.fn.jquery;
 	var json;
 	if (location.search.length > 0) {
 		var search = decodeURIComponent(location.search);
 		tarea_a.value = search.replace(/&/g, "\n&");
-		json = getParams(location.search);
+		json = paramsToJSON(location.search);
 	} else {
 		var response = $.ajax({ url: 'test.json', dataType: 'json', async: false });
 		json = JSON.parse(response.responseText);
@@ -60,7 +78,6 @@ $(document).ready(function () {
 	traverseJSON(json, [], function (keys, value) {
 		var name = keys.join('.');
 		$("[name='" + name + "']").val([value]);
-		console.log(name + ":" + value);
 	});
 	tarea_b.value = JSON.stringify(json, null, '  ');
 	test();
@@ -94,7 +111,9 @@ function test() {
 	}
 	{
 		var j = {
+			/* 1. "名前"に"値"を定義 */
 			"club_name": "Foo+Bar",
+			/* 2. "名前"に{オブジェクト}を定義 */
 			"club": {
 				"sports": "2",
 				"area-2": "on",
@@ -102,7 +121,9 @@ function test() {
 				"tel": "0120-345-678",
 				"post": "123-4567"
 			},
+			/* 3. "名前"に["値"の配列]を定義 */
 			"m_id": ["101", "102", "103"],
+			/* 4. "名前"に[{オブジェクト}の配列]を定義 */
 			"member": [
 				{ "sex": "2", "age": "30" },
 				{ "sex": "1", "age": "28" },
@@ -110,5 +131,28 @@ function test() {
 			]
 		};
 		console.log(j);
+	}
+	{
+		var j = { buildJSON: buildJSON };
+		j.buildJSON("club_name = Foo+Bar");
+		j.buildJSON("club.sports = 2");
+		j.buildJSON("club.area-2 = on");
+		j.buildJSON("club.area-4 = on");
+		j.buildJSON("club.tel=0120-345-678");
+		j.buildJSON("club.post=123-4567");
+		j.buildJSON("m_id[0]=101");
+		j.buildJSON("m_id[1]=102");
+		j.buildJSON("m_id[2]=103");
+		j.buildJSON("member[0].sex=f");
+		j.buildJSON("member[0].age=30");
+		j.buildJSON("member[1].sex=m");
+		j.buildJSON("member[1].age=28");
+		j.buildJSON("member[2].sex=f");
+		j.buildJSON("member[2].age=26");
+		console.log(j);
+		traverseJSON(j, [], function (keys, value) {
+			var name = keys.join('.');
+			console.log(name + "=" + value);
+		});
 	}
 }
